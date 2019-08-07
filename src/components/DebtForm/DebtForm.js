@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { thisTypeAnnotation } from '@babel/types';
+import swal from 'sweetalert';
 
 class DebtForm extends Component {
     constructor(props){
@@ -23,10 +23,15 @@ class DebtForm extends Component {
     }
     addDebt = (event) => {
         event.preventDefault();
-        this.setState({
-            ...this.state, 
-            allDebts: [...this.state.allDebts, { name: this.state.name, balance: this.state.balance, rate: this.state.rate }]
-        })
+        if (this.state.name !== '' && this.state.balance !== '' && this.state.rate !== ''){
+            this.setState({
+                ...this.state, 
+                allDebts: [...this.state.allDebts, { name: this.state.name, balance: this.state.balance, rate: this.state.rate }]
+            })
+        } else {
+            swal('You missed something', 'Please fill out each field.', 'error')
+        }
+       
     }
     deleteDebt = (i) => {
         let debts = this.state.allDebts.slice();
@@ -34,7 +39,10 @@ class DebtForm extends Component {
         let result = debts.splice(i, 1);
         this.setState({
             ...this.state, 
-            allDebts: debts
+            allDebts: debts,
+            name: '',
+            balance: '',
+            rate: ''
         })
     }
     editDebt = (debt, i) => {
@@ -62,21 +70,27 @@ class DebtForm extends Component {
         event.preventDefault();
         this.resetValues(); 
     }
-
+    saveDebts = () => {
+        console.log('this function will send the array of debts in state to the database')
+    }
     render(){
         return(
             <main>
                 <h2>Enter your debts</h2>
+                <div className="form-container">
                 <form>
                     <label>Name</label>
-                    <input value={this.state.name} type="text" onChange={(event)=>this.handleChangeFor(event, 'name')}/>
+                    <input value={this.state.name} type="text" onChange={(event)=>this.handleChangeFor(event, 'name')} required/>
                     <label>Amount owed</label>
-                    <input value={this.state.balance} type="float" onChange={(event)=>this.handleChangeFor(event, 'balance')}/>
+                    <input value={this.state.balance} type="float" onChange={(event)=>this.handleChangeFor(event, 'balance')} required/>
                     <label>Interest rate</label>
-                    <input value={this.state.rate} type="float" onChange={(event)=>this.handleChangeFor(event, 'rate')}/>
-                    {this.state.add && <button onClick={(event)=>this.addDebt(event)}>Add</button>}
-                    {this.state.edit && <button onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
+                    <input value={this.state.rate} type="float" onChange={(event)=>this.handleChangeFor(event, 'rate')} required/>
                 </form>
+                <div className="center">
+                    {this.state.add && <button className="submit" onClick={(event)=>this.addDebt(event)}>Add</button>}
+                    {this.state.edit && <button className="submit save" onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
+                </div>
+                </div>
                 <ul>
                 {this.state.allDebts.map((debt, i) => {
                     return(
@@ -84,7 +98,7 @@ class DebtForm extends Component {
                     )
                 })}
                 </ul>
-                {JSON.stringify(this.state)}
+                {this.state.allDebts.length > 0 && <button className="save" onClick={()=>this.saveDebts()}>Save</button>}
             </main>
         );
     }
