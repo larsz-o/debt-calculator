@@ -91,10 +91,10 @@ class DebtForm extends Component {
                     {this.state.edit && <button className="submit save" onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
                 </div>
                 </div>
-                <ul>
+                <ul className="form-container">
                 {this.state.allDebts.map((debt, i) => {
                     return(
-                        <li key={i}>{debt.name} {debt.balance} {debt.rate}% <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(i)}>Delete</button></li>
+                        <li key={i}>{debt.name} : {debt.balance} @ {debt.rate} % &nbsp; <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(i)}>Delete</button></li>
                     )
                 })}
                 </ul>

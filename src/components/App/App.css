@@ -25,6 +25,7 @@ form {
   width: 50%;
   margin-left: 25vw;
   margin-right: 25vw;
+  margin-top: 5vh;
 }
 h2 {
   font-family: 'Rock Salt', cursive;
@@ -51,15 +52,24 @@ label {
   font-weight: 600;
   font-family: 'Cutive Mono', monospace;
 }
+li {
+  width: 100%;
+}
 main {
   margin-top: 20vh;
   margin: 10px;
   padding: 10px;
 }
+.margin-left {
+  margin-left: 20vw;
+}
 .save {
   background-color: #111344;
   background-color: #39CCCC;
   color: #001f3f;
+}
+.space-evenly {
+  padding: 5vw;
 }
 .submit {
   width: 30%;
