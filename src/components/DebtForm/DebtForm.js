@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { thisTypeAnnotation } from '@babel/types';
 
 class DebtForm extends Component {
     constructor(props){
@@ -7,7 +8,10 @@ class DebtForm extends Component {
             name: '',
             balance: '',
             rate: '',
-            allDebts: []
+            add: true,
+            edit: false, 
+            index: '',
+            allDebts: [],
         }
     }
 
@@ -23,8 +27,39 @@ class DebtForm extends Component {
             ...this.state, 
             allDebts: [...this.state.allDebts, { name: this.state.name, balance: this.state.balance, rate: this.state.rate }]
         })
+    }
+    deleteDebt = (debt) => {
+        console.log(debt);
 
     }
+    editDebt = (debt, i) => {
+        console.log(debt);
+        this.setState({
+            ...this.state,
+            add: false,
+            edit: true,
+            name: debt.name,
+            balance: debt.balance,
+            rate: debt.rate,
+            index: i
+        })
+    }
+    resetValues = () => {
+    let debts = this.state.allDebts.slice();
+    debts[this.state.index] = {name: this.state.name, balance: this.state.balance, rate: this.state.rate};
+    console.log(debts);
+    this.setState({
+            ...this.state,
+            add: true, 
+            edit: false,
+            allDebts: debts
+        })
+    }
+    saveChanges = (event) => {
+        event.preventDefault();
+        this.resetValues(); 
+    }
+
     render(){
         return(
             <main>
@@ -36,8 +71,17 @@ class DebtForm extends Component {
                     <input value={this.state.balance} type="float" onChange={(event)=>this.handleChangeFor(event, 'balance')}/>
                     <label>Interest rate</label>
                     <input value={this.state.rate} type="float" onChange={(event)=>this.handleChangeFor(event, 'rate')}/>
-                    <button onClick={(event)=>this.addDebt(event)}>Add</button>
+                    {this.state.add && <button onClick={(event)=>this.addDebt(event)}>Add</button>}
+                    {this.state.edit && <button onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
                 </form>
+                <ul>
+                {this.state.allDebts.map((debt, i) => {
+                    return(
+                        <li key={i}>{debt.name} {debt.balance} {debt.rate}% <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(debt)}>Delete</button></li>
+                    )
+                })}
+                </ul>
+                {JSON.stringify(this.state)}
             </main>
         );
     }
