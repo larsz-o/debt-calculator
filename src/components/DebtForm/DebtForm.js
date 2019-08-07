@@ -28,12 +28,16 @@ class DebtForm extends Component {
             allDebts: [...this.state.allDebts, { name: this.state.name, balance: this.state.balance, rate: this.state.rate }]
         })
     }
-    deleteDebt = (debt) => {
-        console.log(debt);
-
+    deleteDebt = (i) => {
+        let debts = this.state.allDebts.slice();
+        console.log(debts, i);
+        let result = debts.splice(i, 1);
+        this.setState({
+            ...this.state, 
+            allDebts: debts
+        })
     }
     editDebt = (debt, i) => {
-        console.log(debt);
         this.setState({
             ...this.state,
             add: false,
@@ -47,7 +51,6 @@ class DebtForm extends Component {
     resetValues = () => {
     let debts = this.state.allDebts.slice();
     debts[this.state.index] = {name: this.state.name, balance: this.state.balance, rate: this.state.rate};
-    console.log(debts);
     this.setState({
             ...this.state,
             add: true, 
@@ -77,7 +80,7 @@ class DebtForm extends Component {
                 <ul>
                 {this.state.allDebts.map((debt, i) => {
                     return(
-                        <li key={i}>{debt.name} {debt.balance} {debt.rate}% <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(debt)}>Delete</button></li>
+                        <li key={i}>{debt.name} {debt.balance} {debt.rate}% <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(i)}>Delete</button></li>
                     )
                 })}
                 </ul>
