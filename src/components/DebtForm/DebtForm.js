@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
+import axios from 'axios';
 
 class DebtForm extends Component {
     constructor(props){
@@ -24,10 +25,12 @@ class DebtForm extends Component {
     addDebt = (event) => {
         event.preventDefault();
         if (this.state.name !== '' && this.state.balance !== '' && this.state.rate !== ''){
-            this.setState({
-                ...this.state, 
-                allDebts: [...this.state.allDebts, { name: this.state.name, balance: this.state.balance, rate: this.state.rate }]
-            })
+            let balance = parseFloat(this.state.balance);
+            let rate = parseFloat(this.state.rate);
+                this.setState({
+                    ...this.state, 
+                    allDebts: [...this.state.allDebts, { name: this.state.name, balance: balance, rate: rate }]
+                })
         } else {
             swal('You missed something', 'Please fill out each field.', 'error')
         }
@@ -35,8 +38,8 @@ class DebtForm extends Component {
     }
     deleteDebt = (i) => {
         let debts = this.state.allDebts.slice();
-        console.log(debts, i);
         let result = debts.splice(i, 1);
+        console.log(result); 
         this.setState({
             ...this.state, 
             allDebts: debts,
@@ -71,7 +74,16 @@ class DebtForm extends Component {
         this.resetValues(); 
     }
     saveDebts = () => {
-        console.log('this function will send the array of debts in state to the database')
+        console.log('this function will send the array of debts in state to the database');
+        axios({
+            method: 'post',
+            url: '/debts',
+            data: this.state.allDebts
+        }).then((response) => {
+            console.log('Debts added. We will need to move to the next page now and fetch our debts');
+        }).catch((error) => {
+            console.log('Error posting debts', error);
+        })
     }
     render(){
         return(
