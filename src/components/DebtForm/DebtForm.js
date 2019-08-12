@@ -100,6 +100,7 @@ class DebtForm extends Component {
                 </ul>
                 {this.state.allDebts.length > 0 && <div className="center"><button className="save" onClick={()=>this.saveDebts()}>Save</button></div>}
                 </div>
+                {JSON.stringify(this.state)}
             </main>
         );
     }
