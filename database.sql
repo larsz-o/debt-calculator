@@ -13,3 +13,8 @@ CREATE TABLE debts (
     "user_id" int foreign key references "person" (id)
 );
 
+CREATE TABLE payments (
+    "id" serial primary key,
+    "amount" float,
+    "debt_id" int foreign key references "debts" (id)
+);
