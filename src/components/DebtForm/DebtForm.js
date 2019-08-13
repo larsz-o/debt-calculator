@@ -45,7 +45,9 @@ class DebtForm extends Component {
             allDebts: debts,
             name: '',
             balance: '',
-            rate: ''
+            rate: '', 
+            edit: false, 
+            add: true
         })
     }
     editDebt = (debt, i) => {
@@ -66,7 +68,10 @@ class DebtForm extends Component {
             ...this.state,
             add: true, 
             edit: false,
-            allDebts: debts
+            allDebts: debts,
+            name: '',
+            balance: '',
+            rate: ''
         })
     }
     saveChanges = (event) => {
@@ -76,7 +81,7 @@ class DebtForm extends Component {
     saveDebts = () => {
         console.log('this function will send the array of debts in state to the database');
         axios({
-            method: 'post',
+            method: 'POST',
             url: '/debts',
             data: this.state.allDebts
         }).then((response) => {
@@ -88,8 +93,9 @@ class DebtForm extends Component {
     render(){
         return(
             <main>
+                <div className="flex-box">
+                <div className="form-container flex-item">
                 <h2>Enter your debts</h2>
-                <div className="form-container">
                 <form>
                     <label>Name</label>
                     <input value={this.state.name} type="text" onChange={(event)=>this.handleChangeFor(event, 'name')} required/>
@@ -100,19 +106,26 @@ class DebtForm extends Component {
                 </form>
                 <div className="center">
                     {this.state.add && <button className="submit" onClick={(event)=>this.addDebt(event)}>Add</button>}
-                    {this.state.edit && <button className="submit save" onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
+                    {this.state.edit && <button className="submit clear" onClick={(event)=>this.saveChanges(event)}>Save Changes</button>}
                 </div>
               
-                <ul>
+                
+                </div>
+                <div className="flex-item">
+                <h2>Tally</h2>
+                <ol type="1">
                 {this.state.allDebts.map((debt, i) => {
                     return(
-                        <li key={i}>{debt.name} : {debt.balance} @ {debt.rate} % &nbsp; <button onClick={()=>this.editDebt(debt, i)}>Edit</button><button onClick={()=>this.deleteDebt(i)}>Delete</button></li>
+                        <li key={i}><h3>{debt.name}<span className="button-div"><img src={require('../images/pencil.png')} alt="edit icon" onClick={()=>this.editDebt(debt, i)}/></span><span className="button-div"><img src={require('../images/delete-button.png')} alt="trash can" onClick={()=>this.deleteDebt(i)}/></span></h3><h4>${debt.balance} @ {debt.rate}%</h4>  &nbsp;</li>
                     )
                 })}
-                </ul>
-                {this.state.allDebts.length > 0 && <div className="center"><button className="clear" onClick={()=>this.saveDebts()}>Save</button></div>}
+                </ol>
+                <h2>Total: ${Number(this.state.allDebts.reduce((accumulator, debt) => accumulator + debt.balance, 0)).toLocaleString()}</h2>
                 </div>
-                {JSON.stringify(this.state)}
+                </div>
+              
+             
+                {this.state.allDebts.length > 0 && <div className="center breathing-room"><button onClick={()=>this.saveDebts()}>Save + Continue</button></div>}
             </main>
         );
     }
