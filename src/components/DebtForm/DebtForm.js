@@ -82,7 +82,7 @@ class DebtForm extends Component {
         console.log('this function will send the array of debts in state to the database');
         axios({
             method: 'POST',
-            url: '/debts',
+            url: 'api/debts',
             data: this.state.allDebts
         }).then((response) => {
             console.log('Debts added. We will need to move to the next page now and fetch our debts');
