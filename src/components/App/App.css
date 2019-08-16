@@ -83,7 +83,6 @@ h4 {
 }
 .hero > h2, h3 {
   color: white;
-  text-shadow: 2px 2px darkmagenta;
   font-size: 1.4em;
 }
 html, body {
