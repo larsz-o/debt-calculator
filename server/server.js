@@ -8,7 +8,11 @@ const debtRouter = require('./routes/debt_router');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(express.static('build'));
+
+if(process.env.NODE_ENV === 'production'){
+    //set static folder
+    app.use(express.static('build'));
+}
 const path = require('path');
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
