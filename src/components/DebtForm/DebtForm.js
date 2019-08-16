@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
-import axios from 'axios';
 
 class DebtForm extends Component {
     constructor(props){
@@ -80,19 +79,10 @@ class DebtForm extends Component {
     }
     saveDebts = () => {
         for(let i = 0; i < this.state.allDebts.length; i++){
-            console.log(this.state.allDebts[i]);
-            axios({
-                method: 'POST',
-                url: '/api/debts',
-                data: this.state.allDebts[i]
-            }).then((response) => {
-               this.props.history.push('/dashboard')
-            }).catch((error) => {
-                console.log('Error posting debts', error);
-                swal('Uh-oh', 'Something went wrong saving your debts. Please try again', 'error')
-            })
-        }
-     
+            this.props.dispatch({type: 'POST_DEBT', payload: this.state.allDebts[i]})
+        } 
+        // to do: figure out if i should turn the save button into continue after the save is successful? then have the button dispatch to dashboard?
+        // this.props.history.push('/dashboard');
     }
     render(){
         return(

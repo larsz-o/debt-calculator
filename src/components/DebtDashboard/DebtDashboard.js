@@ -9,7 +9,9 @@ class DebtDashboard extends Component {
             // allow togggling of methods but require one to be set 
         }
     }
-
+componentDidMount(){
+    this.props.dispatch({type: 'FETCH_DEBTS'});
+}
     render(){
         return(
             <main>

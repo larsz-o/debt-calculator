@@ -12,5 +12,13 @@ router.post('/', (req, res) => {
             res.sendStatus(500); 
         })
 })
-
+router.get('/', (req, res) => {
+    const query = `SELECT * FROM "debts";`;
+    pool.query(query).then((results) => {
+        res.send(results.rows);
+    }).catch((error) => {
+        console.log('Error getting debts', error);
+        res.sendStatus(500);
+})
+})
 module.exports = router; 
