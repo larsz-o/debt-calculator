@@ -12,8 +12,5 @@ router.post('/', (req, res) => {
             res.sendStatus(500); 
         })
 })
-router.get('/', ((req, res) => {
-    let request = 'hi';
-    res.send(request);
-}))
+
 module.exports = router; 
