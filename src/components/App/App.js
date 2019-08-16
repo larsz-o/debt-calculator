@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 import DebtForm from '../DebtForm/DebtForm';
 import Dashboard from '../DebtDashboard/DebtDashboard';
 import './App.css';
