@@ -86,9 +86,10 @@ class DebtForm extends Component {
                 url: '/api/debts',
                 data: this.state.allDebts[i]
             }).then((response) => {
-                console.log('Debts added. We will need to move to the next page now and fetch our debts');
+               this.props.history.push('/dashboard')
             }).catch((error) => {
                 console.log('Error posting debts', error);
+                swal('Uh-oh', 'Something went wrong saving your debts. Please try again', 'error')
             })
         }
      

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'; 
 
 class DebtDashboard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            myDebts: [],
             settings: {notSet: true, method: ''}
             // allow togggling of methods but require one to be set 
         }
     }
+ 
     render(){
         return(
             <main>
@@ -36,5 +37,8 @@ class DebtDashboard extends Component {
         );
     }
 }
+const mapStateToProps = ({
 
-export default DebtDashboard;
+})
+
+export default connect(mapStateToProps)(DebtDashboard);
