@@ -9,7 +9,7 @@ class DebtDashboard extends Component {
             // allow togggling of methods but require one to be set 
         }
     }
- 
+
     render(){
         return(
             <main>
@@ -37,8 +37,8 @@ class DebtDashboard extends Component {
         );
     }
 }
-const mapStateToProps = ({
-
+const mapStateToProps = state => ({
+    settings: state.settings.userSettings
 })
 
 export default connect(mapStateToProps)(DebtDashboard);
