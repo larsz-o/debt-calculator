@@ -5,18 +5,28 @@ class DebtDashboard extends Component {
         super(props);
         this.state = {
             myDebts: [],
-            settings: {firstTime: true}
+            settings: {notSet: true, method: ''}
+            // allow togggling of methods but require one to be set 
         }
     }
     render(){
         return(
             <main>
                 <h2>Dashboard</h2>
-                <p>I am going to include some charts here</p>
-                {this.state.settings.firstTime && 
+                {this.state.settings.notSet && 
                 <div className="center">
-                    <h3>How do you want to attack your debts?</h3>
-                    <button>Snowball</button><button>Avalanche</button>
+                    <h3>choose your approach to paying off debt</h3>
+                    <div className="flex-box choice-container flex-fill">
+                        <div className="choice-card"><h4>Debt Snowball</h4>
+                        <p>Paying your debts smallest to largest, regardless of interest rate.</p>
+                        <button>Snowball</button>
+                        </div>
+                        <div className="choice-card"><h4>Debt Avalance</h4>
+                        <p>Paying your highest interest rate debts first. </p>
+                            <button>Avalanche</button>
+                            </div>
+                    </div>
+                   
                     </div>}
             </main>
         );

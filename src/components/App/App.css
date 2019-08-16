@@ -24,9 +24,31 @@ button {
 .center {
   text-align: center;
 }
+.choice-card {
+  width: 40vw;
+  background-color: #F7F7F7;
+  padding: 10px;
+  box-shadow: 6px 8px #00BD9D;
+  margin: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  vertical-align: middle;
+}
+.choice-card > button {
+  max-width: 30vw;
+  align-self: center;
+}
+.choice-card > h4 {
+  font-weight: 600;
+}
+.choice-container {
+  background-color: black;
+  border-radius: 10px;
+  margin-top: 15vh;
+}
 .clear {
   background-color: #FF4136;
-
 }
 .flex-box {
   display: flex;
@@ -38,6 +60,9 @@ button {
   display: inline-flex;
   flex-direction: column;
   padding: 2px 16px;
+}
+.flex-fill {
+  align-items: stretch;
 }
 form {
   display: flex; 
