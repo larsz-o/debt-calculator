@@ -1,13 +1,12 @@
 * {
   box-sizing: border-box;
-  color: #111111;
 }
 .breathing-room {
   margin-top: 10vh;
 }
 button {
   padding: 10px;
-  background-color: black;
+  background-color:  #54494B;
   color: #F4E8C1;
   cursor: pointer;
   font-size: 1.2em;
@@ -33,6 +32,7 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   vertical-align: middle;
+  color: #54494B;
 }
 .choice-card > button {
   max-width: 30vw;
@@ -77,6 +77,9 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+
+  background-color: #E1DBDF;
+  color: #54494B;
 }
 input {
   border: 0;
