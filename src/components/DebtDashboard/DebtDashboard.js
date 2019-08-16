@@ -19,11 +19,11 @@ class DebtDashboard extends Component {
                 <div className="center">
                     <h3>Choose your approach for paying off debt</h3>
                     <div className="flex-box flex-fill">
-                        <div className="choice-card"><h4>Debt Snowball</h4>
+                        <div className="choice-card col-4"><h4>Debt Snowball</h4>
                         <p>Paying your debts smallest to largest, regardless of interest rate.</p>
                         <button>Snowball</button>
                         </div>
-                        <div className="choice-card"><h4>Debt Avalance</h4>
+                        <div className="choice-card col-4"><h4>Debt Avalance</h4>
                         <p>Paying your highest interest rate debts first. </p>
                             <button>Avalanche</button>
                             </div>
