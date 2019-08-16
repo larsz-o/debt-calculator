@@ -9,6 +9,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('build'));
+const path = require('path');
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
+
 app.use('/api/debts', debtRouter);
 
 const port = process.env.PORT || 5000;
