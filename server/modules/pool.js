@@ -19,9 +19,12 @@ if(process.env.DATABASE_URL) {
     };
 } else {
     config = {
-        host: 'localhost',
-        port: 5432, 
-        database: 'difference',
+        host: process.env.DEV_HOST,
+        port: process.env.DEV_PORT, 
+        database: process.env.DEV_DB,
+        user: process.env.DEV_USER,
+        password: process.env.DEV_PW,
+        ssl: true, 
         max: 10, 
         idleTimeoutMillis: 30000
     }

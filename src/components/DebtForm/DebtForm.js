@@ -79,16 +79,19 @@ class DebtForm extends Component {
         this.resetValues(); 
     }
     saveDebts = () => {
-        console.log('this function will send the array of debts in state to the database');
-        axios({
-            method: 'POST',
-            url: '/api/debts',
-            data: this.state.allDebts
-        }).then((response) => {
-            console.log('Debts added. We will need to move to the next page now and fetch our debts');
-        }).catch((error) => {
-            console.log('Error posting debts', error);
-        })
+        for(let i = 0; i < this.state.allDebts.length; i++){
+            console.log(this.state.allDebts[i]);
+            axios({
+                method: 'POST',
+                url: '/api/debts',
+                data: this.state.allDebts[i]
+            }).then((response) => {
+                console.log('Debts added. We will need to move to the next page now and fetch our debts');
+            }).catch((error) => {
+                console.log('Error posting debts', error);
+            })
+        }
+     
     }
     render(){
         return(
