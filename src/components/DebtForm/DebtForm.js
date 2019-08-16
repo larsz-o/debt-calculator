@@ -97,7 +97,7 @@ class DebtForm extends Component {
         return(
             <main>
                 <div className="flex-box">
-                <div className="form-container flex-item">
+                <div className="form-container col-5">
                 <h2>Enter your debts</h2>
                 <form>
                     <label>Name</label>
@@ -114,7 +114,8 @@ class DebtForm extends Component {
               
                 
                 </div>
-                <div className="flex-item">
+                <div className="col-1"></div>
+                <div className="col-5">
                 <h2>Tally</h2>
                 <ol type="1">
                 {this.state.allDebts.map((debt, i) => {

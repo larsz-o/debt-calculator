@@ -50,11 +50,6 @@ button {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.flex-item {
-  display: inline-flex;
-  flex-direction: column;
-  padding: 2px 16px;
-}
 .flex-fill {
   align-items: stretch;
 }
@@ -102,6 +97,8 @@ label {
   font-family: 'Cutive Mono', monospace;
 }
 main {
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 20vh;
   margin-bottom: 10px;
 }
