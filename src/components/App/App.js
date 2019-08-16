@@ -7,7 +7,6 @@ import './App.css';
 function App() {
   return (
     <div>
-   hi
     <Router>
       <Switch>
       <Route exact path="/add-debts" component ={DebtForm}/>
