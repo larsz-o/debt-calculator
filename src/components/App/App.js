@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Switch>
-      <Route path="/debt" component ={DebtForm}/>
+      <Route exact path="/add-debts" component ={DebtForm}/>
       <Route path="/dashboard" component={Dashboard}/>
       </Switch>
     </Router>
