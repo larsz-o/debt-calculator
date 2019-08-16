@@ -42,11 +42,6 @@ button {
 .choice-card > h4 {
   font-weight: 600;
 }
-.choice-container {
-  background-color: black;
-  border-radius: 10px;
-  margin-top: 15vh;
-}
 .clear {
   background-color: #FF4136;
 }
@@ -79,9 +74,22 @@ h2 {
 h4 {
   font-weight: 400;
 }
+.hero {
+  background-color: gray;
+  color: rgb(223, 208, 208);
+  margin-top: 15vh;
+  padding: 5px;
+  min-height: 60vh;
+}
+.hero > h2, h3 {
+  color: white;
+  text-shadow: 2px 2px darkmagenta;
+  font-size: 1.4em;
+}
 html, body {
   height: 100%;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 input {
   border: 0;
@@ -103,8 +111,7 @@ label {
 }
 main {
   margin-top: 20vh;
-  margin: 10px;
-  padding: 10px;
+  margin-bottom: 10px;
 }
 .margin-left {
   margin-left: 20vw;

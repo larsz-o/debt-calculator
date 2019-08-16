@@ -12,11 +12,13 @@ class DebtDashboard extends Component {
     render(){
         return(
             <main>
-                <h2>Dashboard</h2>
+            <h2>Dashboard</h2>
+                <div className="hero">
+             
                 {this.state.settings.notSet && 
                 <div className="center">
-                    <h3>choose your approach to paying off debt</h3>
-                    <div className="flex-box choice-container flex-fill">
+                    <h3>Choose your approach for paying off debt</h3>
+                    <div className="flex-box flex-fill">
                         <div className="choice-card"><h4>Debt Snowball</h4>
                         <p>Paying your debts smallest to largest, regardless of interest rate.</p>
                         <button>Snowball</button>
@@ -28,6 +30,8 @@ class DebtDashboard extends Component {
                     </div>
                    
                     </div>}
+                </div>
+                
             </main>
         );
     }
