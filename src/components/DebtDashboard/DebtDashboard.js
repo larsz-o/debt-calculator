@@ -35,7 +35,7 @@ selectMethod = (event, property) => {
                    
                     </div>}{this.props.settings.method !== '' && 
                     <div>
-                       <iframe src={this.props.gif} width="480" height="228" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                     
                     </div>} 
                 </div>
                 
@@ -45,7 +45,7 @@ selectMethod = (event, property) => {
 }
 const mapStateToProps = state => ({
     settings: state.settings.userSettings,
-    gif: state.settings.gif
+ 
 })
 
 export default connect(mapStateToProps)(DebtDashboard);
