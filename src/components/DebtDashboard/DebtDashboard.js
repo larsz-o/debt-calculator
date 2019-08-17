@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
-import axios from 'axios';
 
 class DebtDashboard extends Component {
 
@@ -8,7 +7,6 @@ componentDidMount(){
     this.props.dispatch({type: 'FETCH_SETTINGS'});
     this.props.dispatch({type: 'FETCH_DEBTS'});
 }
-
 
 selectMethod = (event, property) => {
     event.preventDefault();
@@ -34,8 +32,16 @@ selectMethod = (event, property) => {
                     </div>
                    
                     </div>}{this.props.settings.method !== '' && 
-                    <div>
-                     
+                    <div className="hero">
+                     charts here, incl. a thermometer
+                     list of debts in the order you want them
+                     make payments
+                     adjust interest/fees/charges
+                     calculate interest rates normally
+                     how many months til payoff
+                     how much you pay per month per debt
+                     your goals
+                     what extra payments will do 
                     </div>} 
                 </div>
                 
