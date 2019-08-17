@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const userSettings = (state = {notSet: true, method: ''}, action ) => {
+const userSettings = (state = {method: ''}, action ) => {
     if (action.type === 'SET_METHOD'){
         return action.payload;
     } 
@@ -9,6 +9,16 @@ const userSettings = (state = {notSet: true, method: ''}, action ) => {
     } 
 }
 
+const gif = (state = [], action) =>{
+    if (action.type === 'SET_GIF'){
+        return action.payload.data[0].embed_url;
+    }
+    else {
+        return state;
+    }
+}
+
 export default combineReducers({
-    userSettings
+    userSettings, 
+    gif
 })

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
+import axios from 'axios';
 
 class DebtDashboard extends Component {
 
 componentDidMount(){
+    this.props.dispatch({type: 'FETCH_SETTINGS'});
     this.props.dispatch({type: 'FETCH_DEBTS'});
 }
+
+
 selectMethod = (event, property) => {
     event.preventDefault();
     this.props.dispatch({type:'SAVE_METHOD', payload: {method: property}})
@@ -15,8 +19,7 @@ selectMethod = (event, property) => {
             <main>
             <h2>Dashboard</h2>
                 <div className="hero">
-             
-                {this.props.settings.notSet && 
+                {this.props.settings.method === '' && 
                 <div className="center">
                     <h3>Choose your approach for paying off debt</h3>
                     <div className="flex-box flex-fill">
@@ -30,7 +33,10 @@ selectMethod = (event, property) => {
                             </div>
                     </div>
                    
-                    </div>}
+                    </div>}{this.props.settings.method !== '' && 
+                    <div>
+                       <iframe src={this.props.gif} width="480" height="228" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    </div>} 
                 </div>
                 
             </main>
@@ -38,7 +44,8 @@ selectMethod = (event, property) => {
     }
 }
 const mapStateToProps = state => ({
-    settings: state.settings.userSettings
+    settings: state.settings.userSettings,
+    gif: state.settings.gif
 })
 
 export default connect(mapStateToProps)(DebtDashboard);

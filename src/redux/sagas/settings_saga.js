@@ -6,7 +6,9 @@ import swal from 'sweetalert';
 function* fetchSettings(){
     try { 
         let response = yield call(axios.get, '/api/settings');
-        yield put({type: 'SET_METHOD', payload: response.data})
+        yield put({type: 'SET_METHOD', payload: response.data});
+        let gif = yield call(axios.get, `https://api.giphy.com/v1/gifs/search?api_key=V5ttoH4Fq3wB5glm7XUfvOVmVM6JGk8C&q=${response.data[0].method}&limit=1&offset=0&rating=G&lang=en`);
+        yield put({type: 'SET_GIF', payload: gif.data}); 
     } catch (error){
         console.log('Error getting settings', error); 
     }
