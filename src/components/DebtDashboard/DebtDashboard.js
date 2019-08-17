@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import Metrics from '../Metrics/Metrics';
+import DebtsTable from '../DebtsTable/DebtsTable';
 import { connect } from 'react-redux'; 
 
+// to do: create a login page that displays a loading message until all user info, settings, debts, and payments are fetched and set in redux
 class DebtDashboard extends Component {
 
 componentDidMount(){
     this.props.dispatch({type: 'FETCH_SETTINGS'});
     this.props.dispatch({type: 'FETCH_DEBTS'});
 }
+
 
 selectMethod = (event, property) => {
     event.preventDefault();
@@ -32,8 +36,11 @@ selectMethod = (event, property) => {
                     </div>
                    
                     </div>}{this.props.settings.method !== '' && 
-                    <div className="hero">
-                     charts here, incl. a thermometer
+                    <div>
+                        <Metrics/>
+                        <DebtsTable/>
+                        {/* to do:  */}
+                     {/* charts here, incl. a thermometer
                      list of debts in the order you want them
                      make payments
                      adjust interest/fees/charges
@@ -41,7 +48,7 @@ selectMethod = (event, property) => {
                      how many months til payoff
                      how much you pay per month per debt
                      your goals
-                     what extra payments will do 
+                     what extra payments will do  */}
                     </div>} 
                 </div>
                 
@@ -51,7 +58,6 @@ selectMethod = (event, property) => {
 }
 const mapStateToProps = state => ({
     settings: state.settings.userSettings,
- 
 })
 
 export default connect(mapStateToProps)(DebtDashboard);

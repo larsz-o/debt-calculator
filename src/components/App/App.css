@@ -119,6 +119,17 @@ main {
   width: 30%;
   margin-top: 5vh;
 }
+thead {
+ padding: 10px;
+ border: 1px solid gray;
+ text-align: center;
+ font-weight: 600;
+}
+td {
+  padding: 10px;
+  border: 1px solid gray;
+  text-align: right;
+}
 /* For mobile: */
 [class*="col-"] {
   width: 100%;

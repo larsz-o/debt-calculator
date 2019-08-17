@@ -13,6 +13,7 @@ router.post('/', (req, res) => {
         })
 })
 router.get('/', (req, res) => {
+    // to do: make for only signed in user
     const query = `SELECT * FROM "debts";`;
     pool.query(query).then((results) => {
         res.send(results.rows);
@@ -20,5 +21,15 @@ router.get('/', (req, res) => {
         console.log('Error getting debts', error);
         res.sendStatus(500);
 })
+})
+router.get('/payments', (req, res) => {
+    // to do: make for only signed in user
+    const query = `SELECT * FROM "payments";`;
+    pool.query(query).then((results) => {
+        res.send(results.rows);
+    }).catch((error) => {
+        console.log('Error getting payments', error); 
+        res.sendStatus(500);
+    })
 })
 module.exports = router; 

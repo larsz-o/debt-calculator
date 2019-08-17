@@ -6,8 +6,17 @@ function* fetchDebts(){
     try{
         const response = yield call(axios.get, '/api/debts');
         yield put({type: 'SET_DEBTS', payload: response.data})
+        yield put({type: 'FETCH_PAYMENTS'});
     } catch(error){
         console.log('error getting debts', error)
+    }
+}
+function* fetchPayments(){
+    try { 
+        const response = yield call(axios.get, '/api/debts/payments');
+        yield put({type: 'SET_PAYMENTS', payload: response.data}); 
+    } catch (error){
+        console.log('error getting payments', error);
     }
 }
 function* postDebts(action){
@@ -22,7 +31,8 @@ function* postDebts(action){
 
 function* debtSaga(){
     yield takeLatest('POST_DEBT', postDebts);
-    yield takeLatest('FETCH_DEBTS', fetchDebts)
+    yield takeLatest('FETCH_DEBTS', fetchDebts);
+    yield takeLatest('FETCH_PAYMENTS', fetchPayments);
 }
 
 export default debtSaga;
