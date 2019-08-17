@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
 })
 router.get('/payments', (req, res) => {
     // to do: make for only signed in user
+    console.log('in payments'); 
     const query = `SELECT * FROM "payments";`;
     pool.query(query).then((results) => {
         res.send(results.rows);

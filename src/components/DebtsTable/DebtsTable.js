@@ -15,7 +15,7 @@ class DebtsTable extends Component {
     render(){
         return(
             <div>
-                {JSON.stringify(this.state)}
+                {/* consider making this table a flex box  */}
                 <table className="col-8">
                     <thead>
                         <tr>
@@ -33,7 +33,7 @@ class DebtsTable extends Component {
                                     <td>{debt.name}</td>
                                     <td>{debt.balance}</td>
                                     <td>{debt.rate}</td>
-                                    {/* <td onClick={()=>this.enableEditing(i, debt)}>{this.state.edit && this.state.currentlyEditing === i ? (<span><input value={this.state.payment} onChange={(event)=>this.handleEditFor(event, 'payment')}/><button onClick={(event)=>this.cancelEditing(event)}>Save</button></span>) : (debt.payment) }</td> */}
+                                    <td>{this.state.edit && this.state.currentlyEditing === i ? (<span><input value={this.state.payment}/></span>) : (debt.payment) }</td>
                                     <td><button>Add a Payment</button></td>
                                 </tr>
                             );
