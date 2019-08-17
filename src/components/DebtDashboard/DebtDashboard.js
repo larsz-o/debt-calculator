@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 
 class DebtDashboard extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            settings: {notSet: true, method: ''}
-            // allow togggling of methods but require one to be set 
-        }
-    }
+
 componentDidMount(){
     this.props.dispatch({type: 'FETCH_DEBTS'});
+}
+selectMethod = (event, property) => {
+    event.preventDefault();
+    this.props.dispatch({type:'SAVE_METHOD', payload: {method: property}})
 }
     render(){
         return(
@@ -18,17 +16,17 @@ componentDidMount(){
             <h2>Dashboard</h2>
                 <div className="hero">
              
-                {this.state.settings.notSet && 
+                {this.props.settings.notSet && 
                 <div className="center">
                     <h3>Choose your approach for paying off debt</h3>
                     <div className="flex-box flex-fill">
                         <div className="choice-card col-4"><h4>Debt Snowball</h4>
                         <p>Paying your debts smallest to largest, regardless of interest rate.</p>
-                        <button>Snowball</button>
+                        <button onClick={(event)=>this.selectMethod(event, 'snowball')}>Snowball</button>
                         </div>
                         <div className="choice-card col-4"><h4>Debt Avalance</h4>
                         <p>Paying your highest interest rate debts first. </p>
-                            <button>Avalanche</button>
+                            <button onClick={(event)=>this.selectMethod(event, 'avalanche')}>Avalanche</button>
                             </div>
                     </div>
                    

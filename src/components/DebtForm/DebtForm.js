@@ -79,10 +79,11 @@ class DebtForm extends Component {
     }
     saveDebts = () => {
         for(let i = 0; i < this.state.allDebts.length; i++){
-            this.props.dispatch({type: 'POST_DEBT', payload: this.state.allDebts[i]})
+            this.props.dispatch({type: 'POST_DEBT', payload: this.state.allDebts[i]});
+            if (i === this.state.allDebts.length){
+                this.props.history.push('/dasboard');
+            }
         } 
-        // to do: figure out if i should turn the save button into continue after the save is successful? then have the button dispatch to dashboard?
-        // this.props.history.push('/dashboard');
     }
     render(){
         return(

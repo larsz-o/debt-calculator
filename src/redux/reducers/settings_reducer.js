@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 
-const userSettings = (state = {}, action ) => {
-    if (action.type === 'SET_USER_SETTINGS'){
+const userSettings = (state = {notSet: true, method: ''}, action ) => {
+    if (action.type === 'SET_METHOD'){
         return action.payload;
-    } else {
+    } 
+    else {
         return state;
-    }
+    } 
 }
 
 export default combineReducers({

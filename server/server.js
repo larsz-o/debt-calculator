@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const debtRouter = require('./routes/debt_router');
+const settingsRouter = require('./routes/settings_router');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -15,6 +16,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 app.use('/api/debts', debtRouter);
+app.use('/api/settings', settingsRouter);
 
 const port = process.env.PORT || 5000;
 
