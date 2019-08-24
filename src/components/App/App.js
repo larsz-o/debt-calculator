@@ -2,6 +2,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 import DebtForm from '../DebtForm/DebtForm';
 import Dashboard from '../DebtDashboard/DebtDashboard';
+import LoginPage from '../LoginPage/LoginPage'; 
 import './App.css';
 
 function App() {
@@ -9,8 +10,9 @@ function App() {
     <div>
     <Router>
       <Switch>
-      <Route exact path="/add-debts" component ={DebtForm}/>
+      <Route path="/add-debts" component ={DebtForm}/>
       <Route path="/dashboard" component={Dashboard}/>
+      <Route exact path="/" component={LoginPage}/>
       </Switch>
     </Router>
     </div>
