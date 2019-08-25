@@ -22,6 +22,7 @@ function* fetchDebts(){
 function* fetchPayments(){
     try { 
         const response = yield call(axios.get, '/api/debts/payments');
+        console.log(response.data); 
         yield put({type: 'SET_PAYMENTS', payload: response.data}); 
     } catch (error){
         console.log('error getting payments', error);

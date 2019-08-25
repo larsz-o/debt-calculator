@@ -116,7 +116,7 @@ class DebtForm extends Component {
                     )
                 })}
                 </ol>
-                <h2>Total: ${Number(this.state.allDebts.reduce((accumulator, debt) => accumulator + debt.balance, 0)).toLocaleString()}</h2>
+                <h2>Total: ${Number(this.state.allDebts.reduce((accumulator, debt) => accumulator + debt.balance, 0))}</h2>
                 </div>
                 </div>
               

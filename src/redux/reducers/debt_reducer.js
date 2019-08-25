@@ -7,7 +7,14 @@ const debts = (state = [], action ) => {
         return state;
     }
 }
-
+const payments = (state = [], action) => {
+    if (action.type === 'SET_PAYMENTS'){
+        return action.payload;
+    } else {
+        return state; 
+    }
+}
 export default combineReducers({
-    debts
+    debts,
+    payments
 })

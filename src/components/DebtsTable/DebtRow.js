@@ -39,10 +39,14 @@ savePayment = (event) => {
     })
 }
     render(){
+        let reduction = this.props.payments.filter(payment => payment.debt_id === this.props.debt.id); 
+        let paidOff = reduction.reduce((accumulator, payment) => accumulator + payment.amount, 0); 
+        console.log(paidOff); 
+
         return(
             <tr key={this.props.i} className="table-row">
             <td>{this.props.debt.name}</td>
-            <td>{this.props.debt.balance}</td>
+            <td>${Number(this.props.debt.balance - paidOff).toLocaleString()}</td>
             <td>{this.props.debt.rate}</td>
             <td>{this.state.edit ? (<span><input value={this.state.payment} /></span>) : (this.props.debt.payment)}</td>
             <td><span className="link" onClick={()=>this.handleOpen()}>Add Payment</span></td>
@@ -58,4 +62,8 @@ savePayment = (event) => {
         ); 
     }
 }
-export default connect()(DebtRow); 
+const mapStateToProps = state => ({
+    debtList: state.debts.debts,
+    payments: state.debts.payments 
+})
+export default connect(mapStateToProps)(DebtRow); 

@@ -49,6 +49,6 @@ class DebtsTable extends Component {
     }
 }
 const mapStateToProps = state => ({
-    debtList: state.debts.debts
+    debtList: state.debts.debts,
 })
 export default connect(mapStateToProps)(DebtsTable);
