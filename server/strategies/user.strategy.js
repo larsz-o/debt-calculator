@@ -34,6 +34,7 @@ passport.use('local', new LocalStrategy({
         const user = result && result.rows && result.rows[0];
         if (user && encryptLib.comparePassword(password, user.password)) {
           // all good! Passwords match!
+          console.log('this is good'); 
           done(null, user);
         } else if (user) {
           // not good! Passwords don't match!

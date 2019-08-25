@@ -44,6 +44,14 @@ button {
 .clear {
   background-color: #FF4136;
 }
+.dialog-body {
+  padding: 5%;
+  color: #54494B;
+  font-family: 'Roboto', sans-serif;
+}
+.dialog-body > h3 {
+  font-weight: 400; 
+}
 .flex-box {
   display: flex;
   flex-direction: row;
@@ -68,6 +76,10 @@ h2 {
 h4 {
   font-weight: 400;
 }
+.header > td {
+  margin: 0;
+text-transform: uppercase;
+}
 .hero {
   margin-top: 15vh;
   padding: 5px;
@@ -77,7 +89,6 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-
   background-color: #E1DBDF;
   color: #54494B;
 }
@@ -100,6 +111,12 @@ label {
   font-weight: 600;
   font-family: 'Cutive Mono', monospace;
 }
+.link {
+color: #E83151;
+}
+.link:hover{
+  cursor: pointer;
+}
 main {
   margin-left: 10px;
   margin-right: 10px;
@@ -119,15 +136,16 @@ main {
   width: 30%;
   margin-top: 5vh;
 }
+.table-row > td {
+  border-bottom: 1px dashed gray;
+}
 thead {
  padding: 10px;
- border: 1px solid gray;
  text-align: center;
  font-weight: 600;
 }
 td {
   padding: 10px;
-  border: 1px solid gray;
   text-align: right;
 }
 /* For mobile: */
@@ -163,4 +181,5 @@ td {
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
+  .offset-4 {width: 100%};
 }

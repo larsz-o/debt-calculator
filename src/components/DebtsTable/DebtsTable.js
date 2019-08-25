@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'; 
+import { connect } from 'react-redux';
+import DebtRow from './DebtRow';
 
 class DebtsTable extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            edit: false, 
+            edit: false,
             payment: '',
-            balance: '', 
-            name: '', 
-            currentlyEditing: ''
+            balance: '',
+            name: '',
+            currentlyEditing: '',
+            show: false
         }
     }
-    render(){
-        return(
-            <div>
-                {/* consider making this table a flex box  */}
-                <table className="col-8">
+
+    handleOpen = () => {
+        this.setState({
+            ...this.state,
+            show: true
+        })
+    }
+    render() {
+        return (
+            <div className="flex-box">
+                <table className="col-10">
                     <thead>
-                        <tr>
+                        <tr className="header">
                             <td>Debt</td>
                             <td>Balance</td>
                             <td>Interest Rate</td>
@@ -29,18 +37,13 @@ class DebtsTable extends Component {
                     <tbody>
                         {this.props.debtList.map((debt, i) => {
                             return (
-                                <tr key={i}>
-                                    <td>{debt.name}</td>
-                                    <td>{debt.balance}</td>
-                                    <td>{debt.rate}</td>
-                                    <td>{this.state.edit && this.state.currentlyEditing === i ? (<span><input value={this.state.payment}/></span>) : (debt.payment) }</td>
-                                    <td><button>Add a Payment</button></td>
-                                </tr>
+                         <DebtRow i={i} debt={debt}/>
                             );
                         })}
                     </tbody>
                 </table>
-                
+
+
             </div>
         );
     }

@@ -2,6 +2,14 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import swal from 'sweetalert';
 
+function* addPayment(action){
+    try {
+        yield call (axios.post, '/api/debts/payments', action.payload); 
+        yield put({type: 'FETCH_PAYMENTS'}); 
+    } catch(error){
+        console.log('error posting payment', error); 
+    }
+}
 function* fetchDebts(){
     try{
         const response = yield call(axios.get, '/api/debts');
@@ -33,6 +41,7 @@ function* debtSaga(){
     yield takeLatest('POST_DEBT', postDebts);
     yield takeLatest('FETCH_DEBTS', fetchDebts);
     yield takeLatest('FETCH_PAYMENTS', fetchPayments);
+    yield takeLatest('ADD_PAYMENT', addPayment);
 }
 
 export default debtSaga;

@@ -6,7 +6,7 @@ class LoginPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            register: false, 
+            login: true, 
             username: '', 
             password: '', 
             first_name: '', 
@@ -20,6 +20,10 @@ class LoginPage extends Component {
          [property]: event.target.value
      })
  }
+ login = (event) => {
+     event.preventDefault();
+     this.props.dispatch({type: 'LOGIN', payload: this.state});
+ }
  registerUser = (event) => {
      event.preventDefault(); 
      if(this.state.password === this.state.confirm_password){
@@ -27,22 +31,30 @@ class LoginPage extends Component {
      } else {
          swal('This is a problem', `Passwords don't match. Please try again`, 'error'); 
      }
-     
+ }
+ setRegister = () => {
+     this.setState({
+         ...this.state,
+         login: !this.state.login
+     })
  }
     render(){
         return(
-           <div>
-               {this.state.register ? (
-               <div>
+           <main>
+               <div className="flex-box">
+               {this.state.login ? (
+               <div className="col-4">
                    <h3>Login</h3>
                    <form>
                        <label>Username</label>
                        <input/>
                        <label>Password</label>
                        <input type="password"/>
+                       <button onClick={(event)=>this.login(event)}>Login</button>
                    </form>
+                   <p>New user? <div className="link" onClick={()=>this.setRegister()}>Create an account</div></p>
                </div>) :  
-               (<div>
+               (<div className="col-4">
                    <h3>Register</h3>
                    <form>
                        <label>Username</label>
@@ -57,8 +69,10 @@ class LoginPage extends Component {
                        <input value={this.state.email} onChange={(event)=>this.handleChangeFor(event, 'email')} type="email"/>
                     <button onClick={(event)=>this.registerUser(event)}>Register</button>
                    </form>
+                   <p><div className="link" onClick={()=>this.setRegister()}>Return to login</div></p>
                </div>)}
-           </div>
+               </div>
+           </main>
         )
     }
 }

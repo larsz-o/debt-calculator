@@ -33,4 +33,14 @@ router.get('/payments', (req, res) => {
         res.sendStatus(500);
     })
 })
+router.post('/payments', (req, res) => {
+      // to do: make for only signed in user
+      const payment = req.body;
+      const query = `INSERT INTO "payments" ("amount", "debt_id") VALUES ($1, $2);`;
+      pool.query(query, [payment.payment, payment.debt.id]).then((response) => {
+          res.sendStatus(201);
+      }).catch((error) => {
+          console.log('Error posting payment', error); 
+      })
+})
 module.exports = router; 
