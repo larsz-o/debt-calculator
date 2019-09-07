@@ -14,7 +14,23 @@ const payments = (state = [], action) => {
         return state; 
     }
 }
+const additions = (state = [], action) => {
+    if (action.type === 'SET_INTEREST'){
+        return action.payload;
+    } else {
+        return state; 
+    }
+}
+const compound = (state = [], action) => {
+    if (action.type === 'SET_COMPOUNDING'){
+        return action.payload;
+    } else {
+        return state; 
+    }
+}
 export default combineReducers({
     debts,
-    payments
+    payments, 
+    additions, 
+    compound
 })

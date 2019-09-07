@@ -11,7 +11,12 @@ componentDidMount(){
     this.props.dispatch({type: 'FETCH_DEBTS'});
 }
 
+// to do: calculate interest accrued. 
 
+// once we get all the debts, we check to see if they are subsidized or not. if not, 
+// check to see when last interest was added. 
+// if not today, accrue interest. 
+// if payment date === today, add all interest since last compound date onto principle. 
 selectMethod = (event, property) => {
     event.preventDefault();
     this.props.dispatch({type:'SAVE_METHOD', payload: {method: property}})

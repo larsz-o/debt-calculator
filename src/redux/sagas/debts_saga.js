@@ -10,6 +10,15 @@ function* addPayment(action){
         console.log('error posting payment', error); 
     }
 }
+function* fetchCompounding() {
+    try {
+        const response = yield call(axios.get, 'api/debts/compound'); 
+        console.log(response.data);
+        yield put({type: 'SET_COMPOUNDING', payload: response.data}); 
+    } catch (error) {
+        console.log('Error fetching compound', error); 
+    }
+}
 function* fetchDebts(){
     try{
         const response = yield call(axios.get, '/api/debts');
@@ -19,11 +28,22 @@ function* fetchDebts(){
         console.log('error getting debts', error)
     }
 }
+function* fetchInterest(){
+    try {
+        const response = yield call(axios.get, 'api/debts/interest'); 
+        console.log(response.data);
+        yield put({type: 'SET_INTEREST', payload: response.data});
+        yield put({type: 'FETCH_COMPOUNDING'}); 
+    } catch (error) {
+        console.log('Error fetching interest', error); 
+    }
+}
 function* fetchPayments(){
     try { 
         const response = yield call(axios.get, '/api/debts/payments');
         console.log(response.data); 
         yield put({type: 'SET_PAYMENTS', payload: response.data}); 
+        yield put({type: 'FETCH_INTEREST'});
     } catch (error){
         console.log('error getting payments', error);
     }
@@ -43,6 +63,8 @@ function* debtSaga(){
     yield takeLatest('FETCH_DEBTS', fetchDebts);
     yield takeLatest('FETCH_PAYMENTS', fetchPayments);
     yield takeLatest('ADD_PAYMENT', addPayment);
+    yield takeLatest('FETCH_INTEREST', fetchInterest);
+    yield takeLatest('FETCH_COMPOUNDING', fetchCompounding); 
 }
 
 export default debtSaga;

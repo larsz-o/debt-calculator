@@ -32,6 +32,7 @@ class DebtsTable extends Component {
                             <td>Interest Rate</td>
                             <td>Monthly Payment</td>
                             <td>Track Payment</td>
+                            <td>Actions</td>
                         </tr>
                     </thead>
                     <tbody>
