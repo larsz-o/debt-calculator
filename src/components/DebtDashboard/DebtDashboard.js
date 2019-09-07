@@ -17,6 +17,8 @@ componentDidMount(){
 // check to see when last interest was added. 
 // if not today, accrue interest. 
 // if payment date === today, add all interest since last compound date onto principle. 
+
+
 selectMethod = (event, property) => {
     event.preventDefault();
     this.props.dispatch({type:'SAVE_METHOD', payload: {method: property}})
