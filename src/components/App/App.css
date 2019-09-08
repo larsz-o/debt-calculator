@@ -20,6 +20,10 @@ button {
   cursor: pointer;
   height: 20px;
 }
+.cancel {
+  background-color: white;
+  color: #FF4136;
+}
 .center {
   text-align: center;
 }
@@ -75,7 +79,7 @@ h4 {
 text-transform: uppercase;
 }
 .hero {
-  margin-top: 15vh;
+  margin-top: 5vh;
   padding: 5px;
   min-height: 60vh;
 }
@@ -128,12 +132,10 @@ main {
 }
 thead {
  padding: 10px;
- text-align: center;
  font-weight: 600;
 }
 td {
   padding: 10px;
-  text-align: right;
 }
 /* For mobile: */
 [class*="col-"] {

@@ -137,7 +137,6 @@ class DebtForm extends Component {
                     <input value={this.state.min_payment} type="float" onChange={(event)=>this.handleChangeFor(event, 'min_payment')} required/>
                     <label>Next Payment Due</label>
                     <input value={this.state.payment_date} type="date" onChange={(event)=>this.handleChangeFor(event, 'payment_date')} required/>
-                    <label>Check box if this a subsized loan and not currently in repayment: <input value={this.state.subsidized} type="checkbox" onChange={()=>this.setState({...this.state, subsidized: !this.state.subsidized})} /></label>
                 </form>
                 <div className="center">
                     {this.state.add && <button className="submit" onClick={(event)=>this.addDebt(event)}>Add</button>}

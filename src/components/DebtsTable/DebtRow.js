@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
 import { Dialog } from '@material-ui/core'; 
 import { connect } from 'react-redux'; 
+import Calculations from './Calculations'; 
+
 
 class DebtRow extends Component {
     constructor(props){
@@ -8,7 +10,11 @@ class DebtRow extends Component {
         this.state = {
             edit: false,
             open: false,
-            current_payment: ''
+            current_payment: this.props.debt.current_payment,
+            name: this.props.debt.name,
+            current_principle: this.props.debt.current_principle,
+            payment_date: this.props.debt.payment_date,
+            rate: this.props.debt.rate
         }
     }
 handleChange = (event) => {
@@ -30,6 +36,15 @@ handleOpen = () => {
         open: true
     })
 }
+saveChanges = (event) => {
+event.preventDefault();
+//to do: write this route
+this.props.dispatch({type: 'EDIT_DEBT', payload: this.state})
+this.setState({
+    ...this.state, 
+    edit: false
+})
+}
 savePayment = (event) => {
     event.preventDefault();
     this.props.dispatch({type: 'ADD_PAYMENT', payload: {payment: this.state.current_payment, debt: this.props.debt}});
@@ -39,16 +54,11 @@ savePayment = (event) => {
     })
 }
     render(){
-        let reduction = this.props.payments.filter(payment => payment.debt_id === this.props.debt.id); 
-        let paidOff = reduction.reduce((accumulator, payment) => accumulator + payment.amount, 0); 
-        console.log(paidOff); 
-
         return(
-            // to do: when clicked on, view entire payment and interest history
             <tr key={this.props.i} className="table-row">
             <td>{this.props.debt.name}</td>
-            <td>${(this.props.debt.starting_balance - paidOff).toLocaleString()}</td>
-            <td>{this.props.debt.rate}</td>
+            <td><Calculations debt={this.props.debt}/></td>
+            <td>{this.props.debt.rate}%</td>
             <td>${this.state.edit ? (<span><input value={this.state.current_payment.toLocaleString()} /></span>) : (this.props.debt.current_payment.toLocaleString())}</td>
             <td><span className="link" onClick={()=>this.handleOpen()}>Add Payment</span></td>
             <Dialog open={this.state.open}>
@@ -59,12 +69,19 @@ savePayment = (event) => {
                 <button onClick={(event)=>this.savePayment(event)}>Save</button>
                 <p className="link center" onClick={()=>this.handleClose()}>Cancel</p>
             </Dialog>
-            <td><span className="link">Edit</span></td>
+            <td><img className="link" src={require('../images/pencil.png')} alt="edit icon" onClick={()=>this.setState({...this.state, edit: true})}/></td>
             <Dialog open={this.state.edit}>
             <div className="dialog-body">
-                <h3>Need to make an adjustment?</h3>
-                <p>Since interest accrues at variable rates and you should be looking at your accounts anyhow, you should use this feature to add in any interest accrued between now and when you made your last payment.</p>
-                <p>You can also use this to add any new debt - though I don't encourage that you take on any more of that!</p>
+                <form>
+                    <h4>Edit Debt Details</h4>
+                    <label>Name: <input value={this.state.name} onChange={(event)=>this.setState({...this.state, name: event.target.value})}/></label>
+                    <label>Balance: <input value={this.state.current_principle} onChange={(event)=>this.setState({...this.state, current_principle: event.target.value})}/></label>
+                    <label>Interest Rate: <input value={this.state.rate} onChange={(event)=>this.setState({...this.state, rate: event.target.value})}/></label>
+                    <label>Monthly Payment: <input value={this.state.current_payment} onChange={(event)=>this.setState({...this.state, current_payment: event.target.value})}/></label>
+                    <label>Payment Date: <input value={this.state.payment_date} onChange={(event)=>this.setState({...this.state, payment_date: event.target.value})}/></label>
+                <button onClick={(event)=>this.saveChanges(event)}>Save</button>
+                <p className="link center" onClick={()=>this.setState({...this.state, edit: false})}>Cancel</p>
+                </form>
             </div>
             </Dialog>
         </tr>

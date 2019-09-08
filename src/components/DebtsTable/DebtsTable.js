@@ -31,9 +31,8 @@ class DebtsTable extends Component {
                             <td>Balance</td>
                             <td>Interest Rate</td>
                             <td>Monthly Payment</td>
-                            <td>Payment Due</td>
                             <td>Track Payment</td>
-                            <td>Actions</td>
+                            <td>Edit</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,8 +43,6 @@ class DebtsTable extends Component {
                         })}
                     </tbody>
                 </table>
-<p>Total Monthly Debt Payments: ${this.props.debtList.reduce((accumulator, payment) => accumulator + payment.current_payment, 0).toLocaleString()}</p>
-
             </div>
         );
     }
