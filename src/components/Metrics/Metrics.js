@@ -5,6 +5,7 @@ class Metrics extends Component {
     constructor(props){
         super(props);
         this.state = {
+            time_remaining: 0
         }
     }
     calculate = () => {
@@ -16,6 +17,7 @@ class Metrics extends Component {
             monthly_payments: monthly_payments,
             time_remaining: time_remaining
         })
+        
     }
     componentDidMount(){
         this.calculate();
@@ -24,14 +26,17 @@ class Metrics extends Component {
 
         return(
             <div>
-                <p>Total monthly debt payments:  {this.props.debts.reduce((accumulator, debt) => accumulator + debt.current_payment, 0).toLocaleString()}</p>
+                <p>Total monthly debt payments:  ${this.props.debts.reduce((accumulator, debt) => accumulator + debt.current_payment, 0).toLocaleString()}</p>
                 <p>Total debt: ${this.props.debts.reduce((accumulator, debt) => accumulator + debt.current_principle, 0).toLocaleString()}</p>
-                <p>Months left of repayment: {this.state.time_remaining ? (this.state.time_remaining) : 'N/A'} </p>
+                <p>Months left of repayment: {this.state.time_remaining} </p>
+                <p>Amount paid off: ${this.props.payments.reduce((accumulator, payment) => accumulator + payment.amount, 0).toLocaleString()}</p>
+                <p>Percent paid off: </p>
             </div>
         );
     }
 }
 const mapStateToProps = state => ({
-    debts: state.debts.debts
+    debts: state.debts.debts,
+    payments: state.debts.payments
 })
 export default connect(mapStateToProps)(Metrics);
