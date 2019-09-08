@@ -7,7 +7,7 @@ class Calculations extends Component {
         this.state = {
             reductions: 0,
             additions: 0, 
-            newBalance: this.props.debt.current_balance
+            newBalance: this.props.debt.current_principle
         }
     }
     calculateAdditions = () => {
@@ -35,16 +35,18 @@ class Calculations extends Component {
         let interest = this.props.additions.filter(addition => addition.debt_id === this.props.debt.id && addition.interest === true);
         if(interest[0].date_added !== today) {
             if (!this.props.debt.subsidized){
-                let interestAccrued = this.props.debt.current_balance * this.props.debt.rate;
-                let newBalance = this.props.debt.current_balance + interestAccrued;
+                let interestAccrued = this.props.debt.current_principle * this.props.debt.rate;
+                let newBalance = this.props.debt.current_principle + interestAccrued;
                 this.setState({
                     ...this.state,
                     newBalance: newBalance
                 });
-                if(this.props.compound.compounding_applied === today){
+                if(this.props.debt.payment_date === today){
                     this.updatePrinciple();
                 }
-            }
+            } this.calculateAdditions(); // make sure this is in the right place. 
+        } else {
+            this.calculateAdditions();
         }
     }
     componentDidMount(){
@@ -54,7 +56,7 @@ class Calculations extends Component {
 
     updatePrinciple = () => {
         // if today is compound date, update the currentBalance, otherwise, just keep adding interest to the displayed balance but not the principle
-        
+
     }
     render(){
        
@@ -66,6 +68,6 @@ class Calculations extends Component {
 const mapStateToProps = state => ({
     payments: state.debts.payments,
     additions: state.debts.additions,
-    compound: state.debts.compound
+  
 })
 export default connect(mapStateToProps)(Calculations); 

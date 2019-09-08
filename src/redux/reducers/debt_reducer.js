@@ -21,10 +21,10 @@ const additions = (state = [], action) => {
         return state; 
     }
 }
-const compound = (state = [], action) => {
-    if (action.type === 'SET_COMPOUNDING'){
-        return action.payload;
-    } else {
+const advance = (state = false, action) =>{
+    if(action.type === 'ADVANCE_TRUE'){
+        return true; 
+    } else { 
         return state; 
     }
 }
@@ -32,5 +32,6 @@ export default combineReducers({
     debts,
     payments, 
     additions, 
-    compound
+    advance
+  
 })

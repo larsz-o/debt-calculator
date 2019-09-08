@@ -6,7 +6,7 @@
 }
 button {
   padding: 10px;
-  background-color:  #54494B;
+  background-color: black;
   color: #F4E8C1;
   cursor: pointer;
   font-size: 1.2em;
@@ -32,7 +32,7 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   vertical-align: middle;
-  color: #54494B;
+
 }
 .choice-card > button {
   max-width: 30vw;
@@ -46,7 +46,6 @@ button {
 }
 .dialog-body {
   padding: 5%;
-  color: #54494B;
   font-family: 'Roboto', sans-serif;
 }
 .dialog-body > h3 {
@@ -67,12 +66,7 @@ form {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.form-container {
-  width: 30%;
-}
-h2 {
-  font-family: 'Rock Salt', cursive;
-}
+
 h4 {
   font-weight: 400;
 }
@@ -89,27 +83,20 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #E1DBDF;
-  color: #54494B;
 }
 input {
   border: 0;
-  border-bottom: 1px solid gray;
-  padding: 20px;
-  background-color: #F4E8C1;
+  border-bottom: 1px solid orange;
   background-color: white;
-  color: #331E38;
   font-size: 1.2em;
-  border-radius: 6px;
   width: 100%;
 }
 input:focus{
   outline: none; 
 }
 label {
-  font-size: 1.5em;
-  font-weight: 600;
-  font-family: 'Cutive Mono', monospace;
+  font-size: 1em;
+  margin-top: 10px;
 }
 .link {
 color: #E83151;

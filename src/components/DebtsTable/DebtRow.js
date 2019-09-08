@@ -8,14 +8,14 @@ class DebtRow extends Component {
         this.state = {
             edit: false,
             open: false,
-            payment: ''
+            current_payment: ''
         }
     }
 handleChange = (event) => {
     let payment = parseFloat(event.target.value); 
     this.setState({
         ...this.state, 
-        payment: payment
+        current_payment: payment
     })
 }
 handleClose = () => {
@@ -32,7 +32,7 @@ handleOpen = () => {
 }
 savePayment = (event) => {
     event.preventDefault();
-    this.props.dispatch({type: 'ADD_PAYMENT', payload: {payment: this.state.payment, debt: this.props.debt}});
+    this.props.dispatch({type: 'ADD_PAYMENT', payload: {payment: this.state.current_payment, debt: this.props.debt}});
     this.setState({
         ...this.state,
         open: false
@@ -44,11 +44,12 @@ savePayment = (event) => {
         console.log(paidOff); 
 
         return(
+            // to do: when clicked on, view entire payment and interest history
             <tr key={this.props.i} className="table-row">
             <td>{this.props.debt.name}</td>
-            <td>${Number(this.props.debt.starting_balance - paidOff).toLocaleString()}</td>
+            <td>${(this.props.debt.starting_balance - paidOff).toLocaleString()}</td>
             <td>{this.props.debt.rate}</td>
-            <td>${this.state.edit ? (<span><input value={this.state.payment} /></span>) : (this.props.debt.payment)}</td>
+            <td>${this.state.edit ? (<span><input value={this.state.current_payment.toLocaleString()} /></span>) : (this.props.debt.current_payment.toLocaleString())}</td>
             <td><span className="link" onClick={()=>this.handleOpen()}>Add Payment</span></td>
             <Dialog open={this.state.open}>
                 <div className="dialog-body">
