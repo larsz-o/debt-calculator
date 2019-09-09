@@ -111,7 +111,6 @@ color: #E83151;
 main {
   margin-left: 10px;
   margin-right: 10px;
-  margin-top: 20vh;
   margin-bottom: 10px;
 }
 .margin-left {
@@ -127,8 +126,14 @@ main {
   width: 30%;
   margin-top: 5vh;
 }
-.table-row > td {
+table {
+  border-collapse: collapse;
+}
+[class*="table-row-"] > td {
   border-bottom: 1px dashed gray;
+}
+.table-row-0 {
+background-color: lightgoldenrodyellow;
 }
 thead {
  padding: 10px;

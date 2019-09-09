@@ -55,7 +55,7 @@ savePayment = (event) => {
 }
     render(){
         return(
-            <tr key={this.props.i} className="table-row">
+            <tr key={this.props.i} className={`table-row-` + this.props.i}>
             <td>{this.props.debt.name}</td>
             <td><Calculations debt={this.props.debt}/></td>
             <td>{this.props.debt.rate}%</td>
