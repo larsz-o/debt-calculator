@@ -47,7 +47,7 @@ class Calculations extends Component {
     }
 }
 const mapStateToProps = state => ({
-    payments: state.debts.payments,
+    payments: state.debts.payments.paymentsList,
     additions: state.debts.additions,
 
 })

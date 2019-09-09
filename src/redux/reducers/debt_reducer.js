@@ -1,15 +1,19 @@
 import { combineReducers } from 'redux';
 
-const debts = (state = [], action ) => {
+const debts = (state = {debtList: [], total: 0, monthlyPayments: 0, timeRemaining: 0}, action ) => {
     if (action.type === 'SET_DEBTS'){
-        return action.payload;
+        let total = action.payload.reduce((accumulator, debt) => accumulator + debt.current_principle, 0);
+        let monthlyPayments = action.payload.reduce((accumulator, debt) =>  accumulator + debt.current_payment, 0);
+        let timeRemaining = total/monthlyPayments;
+        return {debtList: action.payload, total: total, monthlyPayments: monthlyPayments, timeRemaining: timeRemaining};
     } else {
         return state;
     }
 }
-const payments = (state = [], action) => {
+const payments = (state = {paymentsList: [], total: 0}, action) => {
     if (action.type === 'SET_PAYMENTS'){
-        return action.payload;
+        let paidOff = action.payload.reduce((accumulator, payment) => accumulator + payment.amount, 0);
+        return {paymentsList: action.payload, total: paidOff};
     } else {
         return state; 
     }

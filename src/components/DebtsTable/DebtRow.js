@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dialog } from '@material-ui/core'; 
 import { connect } from 'react-redux'; 
 import Calculations from './Calculations'; 
-
+import moment from 'moment';
 
 class DebtRow extends Component {
     constructor(props){
@@ -89,7 +89,7 @@ savePayment = (event) => {
     }
 }
 const mapStateToProps = state => ({
-    debtList: state.debts.debts,
+    debtList: state.debts.debts.debtList,
     payments: state.debts.payments 
 })
 export default connect(mapStateToProps)(DebtRow); 
