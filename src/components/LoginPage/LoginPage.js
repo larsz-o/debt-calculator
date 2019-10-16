@@ -41,7 +41,7 @@ class LoginPage extends Component {
     render(){
         return(
            <main>
-               <div className="flex-box">
+               <div className="flex-box login">
                {this.state.login ? (
                <div className="col-4">
                    <h3>Login</h3>

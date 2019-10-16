@@ -87,6 +87,10 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  background-image: url('./bank-banknotes-cash-358647.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 input {
   border: 0;
@@ -108,6 +112,7 @@ color: #E83151;
 .link:hover{
   cursor: pointer;
 }
+
 main {
   margin-left: 10px;
   margin-right: 10px;
@@ -132,8 +137,11 @@ table {
 [class*="table-row-"] > td {
   border-bottom: 1px dashed gray;
 }
+[class*="table-row-"] {
+  background-color: white;
+}
 .table-row-0 {
-background-color: lightgoldenrodyellow;
+background-color: rgba(236, 225, 65, .8);
 }
 thead {
  padding: 10px;
@@ -141,6 +149,11 @@ thead {
 }
 td {
   padding: 10px;
+}
+.white {
+  background-color: rgb(197, 193, 204, .1);
+  padding: 5vw;
+
 }
 /* For mobile: */
 [class*="col-"] {

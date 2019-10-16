@@ -23,7 +23,7 @@ class DebtsTable extends Component {
     }
     render() {
         return (
-            <div className="flex-box">
+            <div className="flex-box white">
                 <table className="col-10">
                     <thead>
                         <tr className="header">

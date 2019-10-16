@@ -17,7 +17,7 @@ selectMethod = (event, property) => {
 }
     render(){
         return(
-            <main>
+            
             <div className="hero">
             <h2>Dashboard</h2>
     
@@ -30,7 +30,7 @@ selectMethod = (event, property) => {
                     </div>
                 </div>
                 
-            </main>
+        
         );
     }
 }
